@@ -1,11 +1,16 @@
+import logging
 from fastapi import FastAPI
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
 
-
-from .models import model
+from .controllers.assistant_controller import router
 
 load_dotenv()
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)s %(name)s — %(message)s",
+)
 
 app = FastAPI()
 
@@ -17,4 +22,4 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(model.model)
+app.include_router(router)
