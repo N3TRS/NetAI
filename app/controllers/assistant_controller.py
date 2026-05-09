@@ -6,7 +6,7 @@ from fastapi import APIRouter, HTTPException
 from groq import APIError
 
 from ..analysis import chatAnalysis
-from ..middleware.injection_guard import detect_injection, is_supported_language
+from ..middleware.injection_guard import detect_injection
 from ..models.analyze_request import AnalyzeRequest
 
 logger = logging.getLogger("netai")
@@ -28,12 +28,6 @@ async def analyze(request: AnalyzeRequest):
 
     if detect_injection(request.prompt) or detect_injection(request.code):
         raise HTTPException(status_code=400, detail="Solicitud no válida.")
-
-    if not is_supported_language(request.code):
-        raise HTTPException(
-            status_code=400,
-            detail="Solo se admite código en TypeScript, Python o Java.",
-        )
 
     request_id = str(uuid.uuid4())[:8]
     start = time.time()
