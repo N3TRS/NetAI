@@ -5,7 +5,11 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .models import model
 
+import os
+from dotenv import load_dotenv
+
 load_dotenv()
+
 
 app = FastAPI()
 

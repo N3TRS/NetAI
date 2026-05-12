@@ -30,6 +30,7 @@ async def ai_analysis(request: AnalyzeRequest):
         response = chatAnalysis.chatAnalysis(request.prompt, request.code)
         return {"status": "success", "analysis": response}
     except APIError as e:
+        print(f"Error real de Groq: {e}")
         raise HTTPException(status_code=503, detail="AI Service unavailable temporary")
     except Exception as e:
         raise HTTPException(status_code=500, detail="Error processing analysis")
