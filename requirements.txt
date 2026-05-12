@@ -40,3 +40,7 @@ httptools==0.7.1
 # Required by dependencies
 annotated-types==0.7.0
 tenacity==9.1.4
+
+# Testing
+pytest
+pytest-cov
