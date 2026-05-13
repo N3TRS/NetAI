@@ -5,7 +5,7 @@ from app.main import app
 
 client = TestClient(app)
 
-MOCK_ANALYSIS = "## Lenguaje detectado\nPython\n\n## Errores y problemas encontrados\nNo se encontraron errores."
+MOCK_ANALYSIS = "La función suma dos números y retorna el resultado. No se encontraron errores."
 VALID_PAYLOAD = {"prompt": "¿Qué hace este código?", "code": "def suma(a, b):\n    return a + b"}
 
 
