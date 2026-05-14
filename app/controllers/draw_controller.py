@@ -1,5 +1,5 @@
 import logging
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, field_validator
 from app.analysis.drawAnalysis import drawAnalysis
 
@@ -21,5 +21,9 @@ class DrawRequest(BaseModel):
 
 @router.post("/draw")
 async def draw_endpoint(request: DrawRequest):
-    result = await drawAnalysis(request.prompt, request.sessionId)
-    return {"status": "success", "response": result}
+    try:
+        result = await drawAnalysis(request.prompt, request.sessionId)
+        return {"status": "success", "response": result}
+    except Exception:
+        logger.error("draw_endpoint error", exc_info=True)
+        raise HTTPException(status_code=500, detail="Error processing drawing request")
