@@ -43,6 +43,9 @@ httptools==0.7.1
 annotated-types==0.7.0
 tenacity==9.1.4
 
+# Metrics
+prometheus-client==0.21.1
+
 # Testing
 pytest
 pytest-cov
