@@ -5,6 +5,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .controllers.assistant_controller import router
 from .controllers.draw_controller import router as draw_router
+from .metrics.metrics_controller import router as metrics_router
+from .metrics.metrics_middleware import MetricsMiddleware
 
 load_dotenv()
 
@@ -15,6 +17,7 @@ logging.basicConfig(
 
 app = FastAPI()
 
+app.add_middleware(MetricsMiddleware)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -25,3 +28,4 @@ app.add_middleware(
 
 app.include_router(router)
 app.include_router(draw_router)
+app.include_router(metrics_router)
