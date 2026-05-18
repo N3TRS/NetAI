@@ -1,8 +1,7 @@
-import time
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
 from starlette.responses import Response
-from .metrics_service import http_requests_total, http_request_duration_seconds
+from app.analysis.metrics_service import http_requests_total, http_request_duration_seconds
 
 
 class MetricsMiddleware(BaseHTTPMiddleware):

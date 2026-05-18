@@ -2,7 +2,6 @@ from prometheus_client import CollectorRegistry, Counter, Histogram, generate_la
 
 registry = CollectorRegistry()
 
-# Registra métricas
 registry.register(PROCESS_COLLECTOR)
 registry.register(PLATFORM_COLLECTOR)
 registry.register(GC_COLLECTOR)

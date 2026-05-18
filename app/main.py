@@ -5,8 +5,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .controllers.assistant_controller import router
 from .controllers.draw_controller import router as draw_router
-from .metrics.metrics_controller import router as metrics_router
-from .metrics.metrics_middleware import MetricsMiddleware
+from .controllers.metrics_controller import router as metrics_router
+from .middleware.metrics_middleware import MetricsMiddleware
 
 load_dotenv()
 
